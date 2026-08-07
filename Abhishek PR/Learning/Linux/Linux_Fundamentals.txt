@@ -1,0 +1,104 @@
+# Linux Fundamentals
+
+## Navigation
+- `pwd` – Print current directory
+- `ls` / `ls -la` – List files and directories
+- `cd <dir>` – Change directory
+- `cd ..` – Go back one directory
+- `cd ~` – Home directory
+
+## File & Directory Management
+- `touch file.txt` – Create file
+- `mkdir folder` – Create directory
+- `cp src dest` – Copy files/directories
+- `mv old new` – Move/Rename
+- `rm file` – Delete file
+- `rm -r folder` – Delete directory
+
+## File Viewing & Editing
+- `cat file` – Display file
+- `less file` – View large file
+- `head -n 10 file` – First 10 lines
+- `tail -n 10 file` – Last 10 lines
+- `nano file` – Edit file
+
+## Search
+- `find . -name "file.txt"` – Find file
+- `grep "text" file` – Search text
+
+## Permissions
+- `chmod 755 file` – Change permissions
+- `chmod +x script.sh` – Make executable
+- `chown user:user file` – Change owner
+
+## Shell Basics
+- `clear` – Clear terminal
+- `history` – Command history
+- `echo "text"` – Print text
+- `man command` – Command manual
+- `whoami` – Current user
+
+---
+
+# Git & GitHub Basics
+
+## Repository
+- `git init` – Initialize repository
+- `git clone <url>` – Clone repository
+
+## Configuration
+- `git config --global user.name`
+- `git config --global user.email`
+
+## Status & History
+- `git status` – Check changes
+- `git log` – Commit history
+- `git diff` – View changes
+
+## Staging & Commit
+- `git add .` – Stage all files
+- `git commit -m "message"` – Commit changes
+
+## Branching
+- `git branch` – List branches
+- `git checkout -b feature/name` – Create & switch branch
+- `git switch feature/name` – Switch branch
+- `git branch -d branch-name` – Delete branch
+
+## Remote
+- `git remote -v` – View remote
+- `git remote add origin <url>` – Add remote
+
+## Push & Pull
+- `git push -u origin branch-name` – First push
+- `git push` – Push changes
+- `git pull origin main` – Get latest changes
+- `git fetch` – Download updates
+
+## Merge
+- `git checkout main`
+- `git merge feature/name` – Merge branch
+
+## Collaboration Workflow
+1. Clone repository
+2. Create feature branch
+3. Make changes
+4. `git add .`
+5. `git commit -m "..."`
+6. `git push -u origin <branch>`
+7. Raise Pull Request (PR)
+8. Review & Merge
+
+---
+
+## Key Concepts
+- **Repository** – Project tracked by Git
+- **Commit** – Snapshot of changes
+- **Branch** – Independent line of development
+- **Merge** – Combine branches
+- **Remote** – GitHub repository
+- **Push** – Upload local commits
+- **Pull** – Download latest changes
+- **Fetch** – Retrieve updates without merging
+- **Pull Request (PR)** – Request to merge changes
+- **Version Control** – Track and manage code changes
