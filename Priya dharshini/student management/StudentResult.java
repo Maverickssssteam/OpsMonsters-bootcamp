@@ -14,84 +14,63 @@ public class StudentResult {
 
         while (true) {
 
-            System.out.println("\n===== STUDENT RESULT MANAGEMENT SYSTEM =====");
+            System.out.println("\n===== STUDENT RESULT SYSTEM =====");
             System.out.println("1. Add Student");
             System.out.println("2. View Students");
             System.out.println("3. Search Student");
             System.out.println("4. Highest Mark");
             System.out.println("5. Average Mark");
-            System.out.println("6. Update Student Mark");
+            System.out.println("6. Update Mark");
             System.out.println("7. Delete Student");
             System.out.println("8. Lowest Mark");
             System.out.println("9. Pass/Fail Count");
             System.out.println("10. Exit");
 
-            System.out.print("Enter Choice : ");
+            System.out.print("Choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
+
 
             switch (choice) {
 
                 case 1:
 
-                    if (count == names.length) {
-                        System.out.println("Array Full!");
+                    if (count == 5) {
+                        System.out.println("Student limit reached");
                         break;
                     }
 
-                    ids[count] = count + 101;
+                    ids[count] = 101 + count;
 
-                    System.out.print("Student Name : ");
+                    System.out.print("Name: ");
                     names[count] = sc.nextLine();
 
-                    System.out.print("Student Mark : ");
-                    int mark = sc.nextInt();
+                    System.out.print("Mark: ");
+                    marks[count] = sc.nextInt();
                     sc.nextLine();
 
-                    if (mark < 0 || mark > 100) {
-                        System.out.println("Invalid Mark! Enter between 0 and 100");
-                        break;
-                    }
-
-                    marks[count] = mark;
                     count++;
 
-                    System.out.println("Student Added Successfully");
+                    System.out.println("Student Added");
                     break;
 
 
                 case 2:
 
                     if (count == 0) {
-                        System.out.println("No Students Found");
+                        System.out.println("No Students");
                         break;
                     }
 
-                    System.out.println("\n===== STUDENT DETAILS =====");
-
                     for (int i = 0; i < count; i++) {
 
-                        System.out.println("----------------------------");
-                        System.out.println("ID     : " + ids[i]);
-                        System.out.println("Name   : " + names[i]);
-                        System.out.println("Mark   : " + marks[i]);
+                        System.out.println("\nID : " + ids[i]);
+                        System.out.println("Name : " + names[i]);
+                        System.out.println("Mark : " + marks[i]);
 
-                        if (marks[i] >= 35)
-                            System.out.println("Result : PASS");
-                        else
-                            System.out.println("Result : FAIL");
-
-
-                        if (marks[i] >= 90)
-                            System.out.println("Grade  : A");
-                        else if (marks[i] >= 75)
-                            System.out.println("Grade  : B");
-                        else if (marks[i] >= 60)
-                            System.out.println("Grade  : C");
-                        else if (marks[i] >= 35)
-                            System.out.println("Grade  : D");
-                        else
-                            System.out.println("Grade  : F");
+                        System.out.println(
+                                marks[i] >= 35 ? "PASS" : "FAIL"
+                        );
                     }
 
                     break;
@@ -99,12 +78,7 @@ public class StudentResult {
 
                 case 3:
 
-                    if (count == 0) {
-                        System.out.println("No Students Found");
-                        break;
-                    }
-
-                    System.out.print("Enter Student Name : ");
+                    System.out.print("Search Name: ");
                     String search = sc.nextLine();
 
                     boolean found = false;
@@ -113,13 +87,10 @@ public class StudentResult {
 
                         if (names[i].equalsIgnoreCase(search)) {
 
-                            found = true;
-
-                            System.out.println("\nStudent Found");
-                            System.out.println("ID   : " + ids[i]);
-                            System.out.println("Name : " + names[i]);
+                            System.out.println("ID : " + ids[i]);
                             System.out.println("Mark : " + marks[i]);
 
+                            found = true;
                             break;
                         }
                     }
@@ -132,174 +103,114 @@ public class StudentResult {
 
                 case 4:
 
-                    if (count == 0) {
-                        System.out.println("No Data");
-                        break;
-                    }
-
-                    int highest = marks[0];
+                    int max = marks[0];
                     String topper = names[0];
 
                     for (int i = 1; i < count; i++) {
 
-                        if (marks[i] > highest) {
+                        if (marks[i] > max) {
 
-                            highest = marks[i];
+                            max = marks[i];
                             topper = names[i];
 
                         }
                     }
 
                     System.out.println("Topper : " + topper);
-                    System.out.println("Highest Mark : " + highest);
+                    System.out.println("Mark : " + max);
 
                     break;
 
 
                 case 5:
 
-                    if (count == 0) {
-                        System.out.println("No Data");
-                        break;
-                    }
-
                     int total = 0;
 
                     for (int i = 0; i < count; i++) {
+
                         total += marks[i];
+
                     }
 
-                    double average = (double) total / count;
-
-                    System.out.println("Total Marks : " + total);
-                    System.out.println("Average Mark : " + average);
+                    System.out.println("Average : " + 
+                    (double) total / count);
 
                     break;
 
 
                 case 6:
 
-                    if (count == 0) {
-                        System.out.println("No Students Found");
-                        break;
-                    }
-
-                    System.out.print("Enter Student Name : ");
-                    String update = sc.nextLine();
-
-                    boolean updated = false;
+                    System.out.print("Student Name: ");
+                    String name = sc.nextLine();
 
                     for (int i = 0; i < count; i++) {
 
-                        if (names[i].equalsIgnoreCase(update)) {
+                        if (names[i].equalsIgnoreCase(name)) {
 
-                            System.out.print("Enter New Mark : ");
-                            int newMark = sc.nextInt();
+                            System.out.print("New Mark: ");
+                            marks[i] = sc.nextInt();
                             sc.nextLine();
 
-
-                            if (newMark >= 0 && newMark <= 100) {
-
-                                marks[i] = newMark;
-                                System.out.println("Student Mark Updated Successfully");
-
-                            } else {
-
-                                System.out.println("Invalid Mark!");
-
-                            }
-
-                            updated = true;
+                            System.out.println("Updated");
                             break;
                         }
                     }
-
-                    if (!updated)
-                        System.out.println("Student Not Found");
 
                     break;
 
 
                 case 7:
 
-                    if (count == 0) {
-                        System.out.println("No Students Found");
-                        break;
-                    }
-
-                    System.out.print("Enter Student Name : ");
-                    String delete = sc.nextLine();
-
-                    boolean deleted = false;
+                    System.out.print("Delete Name: ");
+                    String del = sc.nextLine();
 
 
                     for (int i = 0; i < count; i++) {
 
-                        if (names[i].equalsIgnoreCase(delete)) {
+                        if (names[i].equalsIgnoreCase(del)) {
 
 
                             for (int j = i; j < count - 1; j++) {
 
-                                ids[j] = ids[j + 1];
-                                names[j] = names[j + 1];
-                                marks[j] = marks[j + 1];
+                                ids[j] = ids[j+1];
+                                names[j] = names[j+1];
+                                marks[j] = marks[j+1];
 
                             }
 
                             count--;
 
-                            deleted = true;
-
-                            System.out.println("Student Deleted Successfully");
+                            System.out.println("Deleted");
                             break;
                         }
                     }
 
-
-                    if (!deleted)
-                        System.out.println("Student Not Found");
-
                     break;
-
 
 
                 case 8:
 
-                    if (count == 0) {
-                        System.out.println("No Data");
-                        break;
-                    }
-
-
-                    int lowest = marks[0];
-                    String lowStudent = names[0];
+                    int min = marks[0];
+                    String low = names[0];
 
 
                     for (int i = 1; i < count; i++) {
 
-                        if (marks[i] < lowest) {
+                        if (marks[i] < min) {
 
-                            lowest = marks[i];
-                            lowStudent = names[i];
+                            min = marks[i];
+                            low = names[i];
 
                         }
                     }
 
-
-                    System.out.println("Student : " + lowStudent);
-                    System.out.println("Lowest Mark : " + lowest);
+                    System.out.println("Lowest : " + low);
+                    System.out.println("Mark : " + min);
 
                     break;
 
 
-
                 case 9:
-
-                    if (count == 0) {
-                        System.out.println("No Data");
-                        break;
-                    }
-
 
                     int pass = 0;
                     int fail = 0;
@@ -311,29 +222,24 @@ public class StudentResult {
                             pass++;
                         else
                             fail++;
-
                     }
 
-
-                    System.out.println("Total Students : " + count);
-                    System.out.println("Pass Students : " + pass);
-                    System.out.println("Fail Students : " + fail);
+                    System.out.println("Pass : " + pass);
+                    System.out.println("Fail : " + fail);
 
                     break;
 
 
-
                 case 10:
 
-                    System.out.println("Thank You!");
+                    System.out.println("Thank You");
                     sc.close();
                     return;
 
 
-
                 default:
 
-                    System.out.println("Invalid Choice!");
+                    System.out.println("Invalid Choice");
 
             }
         }
